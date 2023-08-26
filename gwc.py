@@ -12,12 +12,21 @@ def count_lines(filename):
     with open (filename, 'r') as file:
         no_of_lines = sum(1 for _ in file) 
         return no_of_lines
+    
+def count_words(filename):
+    #function to count words by whitespace
+    with open (filename, 'r') as file:
+        content = file.read()
+        words = content.split()
+        no_of_words = len(words)
+        return no_of_words
 
 def main():
-
+    #user help menu
     parser = argparse.ArgumentParser(description='simplified unix wc version')
     parser.add_argument('-c', action='store_true', help='Count bytes in a text file')
     parser.add_argument('-l', action='store_true', help='Count lines in a text file')
+    parser.add_argument('-w', action='store_true', help='Count words in a file')
     parser.add_argument('filename', help='Name of the file')
     args = parser.parse_args()
     
@@ -31,6 +40,11 @@ def main():
     if args.l:
         line_count = count_lines(args.filename)
         print(f"{line_count} lines in {args.filename}")
+
+    #if the =w flag is passed
+    if args.w:
+        word_count = count_words(args.filename)
+        print(f"There are {word_count} words in {args.filename}")
 
 if __name__ == '__main__':
     main()
