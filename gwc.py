@@ -61,5 +61,13 @@ def main():
         character_count = count_characters(args.filename)
         print(f'{args.filename} has {character_count} characters')
 
+    #setting the defualt behaivour to give every detail about the file
+    else:
+        word_count = count_words(args.filename)
+        character_count = count_characters(args.filename)
+        lines_count = count_characters(args.filename)
+        bytes_count = count_bytes(args.filename)
+        print(f"{bytes_count} bytes, {word_count} words, {character_count} characters, {lines_count} lines")
+ 
 if __name__ == '__main__':
     main()

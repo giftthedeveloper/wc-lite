@@ -6,6 +6,7 @@ This program works for a wide range of file types which includes .txt, .pdf, .do
 
 In your python shell, try:
 
+gwc filename gives you the number of bytes, characters, words and lines in your file.
 gwc -h triggers the help menu
 gwc -c filename.fileformat outputs the number of bytes in your file
 gwc -l filename outputs the number of lines in your file
