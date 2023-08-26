@@ -21,12 +21,22 @@ def count_words(filename):
         no_of_words = len(words)
         return no_of_words
 
+def count_characters(filename):
+    #function to count characters using utf-8 encoding to handle multi byte characters
+    with open (filename, 'r', encoding='utf-8') as file:
+        content = file.read()
+        char_count = len(content)
+        return char_count
+    
+
+
 def main():
     #user help menu
     parser = argparse.ArgumentParser(description='simplified unix wc version by Gift Jeremiah')
     parser.add_argument('-c', action='store_true', help='Count bytes in a text file')
     parser.add_argument('-l', action='store_true', help='Count lines in a text file')
     parser.add_argument('-w', action='store_true', help='Count words in a file')
+    parser.add_argument('-m', action='store_true', help='Count characters in a file')
     parser.add_argument('filename', help='Name of the file')
     args = parser.parse_args()
     
@@ -37,14 +47,19 @@ def main():
         print (f"{args.filename} is {bytes_count} bytes and roughly {kb_count} kilobyte")
 
     #if the -l flag is passed
-    if args.l:
+    elif args.l:
         line_count = count_lines(args.filename)
         print(f"{line_count} lines in {args.filename}")
 
     #if the =w flag is passed
-    if args.w:
+    elif args.w:
         word_count = count_words(args.filename)
         print(f"There are {word_count} words in {args.filename}")
+
+    #if the -m argument is passed
+    elif args.m:
+        character_count = count_characters(args.filename)
+        print(f'{args.filename} has {character_count} characters')
 
 if __name__ == '__main__':
     main()

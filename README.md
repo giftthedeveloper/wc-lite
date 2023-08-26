@@ -8,5 +8,6 @@ In your python shell, try:
 
 gwc -h triggers the help menu
 gwc -c filename.fileformat outputs the number of bytes in your file
-gwc -l filename.fileformat outputs the number of lines in your file
-gwc -w filename.fileformat outputs the number of words in your file
+gwc -l filename outputs the number of lines in your file
+gwc -w filename outputs the number of words in your file
+gwc -m filename outputs the number of characters in your file
