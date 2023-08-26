@@ -1,4 +1,5 @@
 import argparse
+import sys
 
 def count_bytes(filename):
     #function to count the number of bytes in a text
@@ -27,7 +28,9 @@ def count_characters(filename):
         content = file.read()
         char_count = len(content)
         return char_count
-    
+
+def read_input():
+    return sys.stdin.read()
 
 
 def main():
@@ -37,8 +40,18 @@ def main():
     parser.add_argument('-l', action='store_true', help='Count lines in a text file')
     parser.add_argument('-w', action='store_true', help='Count words in a file')
     parser.add_argument('-m', action='store_true', help='Count characters in a file')
-    parser.add_argument('filename', help='Name of the file')
+    parser.add_argument('filename',nargs='?', help='Name of the file')
+
     args = parser.parse_args()
+
+    if args.filename == '-':
+        content = read_input()
+        line_count = content.count('\n')
+        word_count = len(content.split())
+        char_count = len(content)
+        byte_count = len(content.encode()) 
+        print(f"{byte_count} bytes, {word_count} words, {char_count} characters, {line_count} lines")
+    
     
     #if -c flag is passed, 
     if args.c:
@@ -62,12 +75,13 @@ def main():
         print(f'{args.filename} has {character_count} characters')
 
     #setting the defualt behaivour to give every detail about the file
-    else:
+    else:  # Default behavior
         word_count = count_words(args.filename)
         character_count = count_characters(args.filename)
-        lines_count = count_characters(args.filename)
+        lines_count = count_lines(args.filename)
         bytes_count = count_bytes(args.filename)
         print(f"{bytes_count} bytes, {word_count} words, {character_count} characters, {lines_count} lines")
- 
+
+    
 if __name__ == '__main__':
     main()
