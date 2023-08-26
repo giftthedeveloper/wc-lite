@@ -23,7 +23,7 @@ def count_words(filename):
 
 def main():
     #user help menu
-    parser = argparse.ArgumentParser(description='simplified unix wc version')
+    parser = argparse.ArgumentParser(description='simplified unix wc version by Gift Jeremiah')
     parser.add_argument('-c', action='store_true', help='Count bytes in a text file')
     parser.add_argument('-l', action='store_true', help='Count lines in a text file')
     parser.add_argument('-w', action='store_true', help='Count words in a file')
